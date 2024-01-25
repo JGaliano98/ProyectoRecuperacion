@@ -27,6 +27,10 @@ if ($acceder) {
 
 
         $user=RP_Usuario::BuscarPorDNI($usuario);
+        
+
+        $ID = $user -> getID();
+
 
         if($user->getRol() == 'Profesor'){
             
@@ -37,7 +41,7 @@ if ($acceder) {
 
         if($user->getRol() == 'Alumno'){
  
-            header('Location: /ProyectoRecuperacion/index.php?menu=alumno');
+            header('Location: /ProyectoRecuperacion/index.php?menu=alumno&&ID='.$ID);
         }
 
         if($user->getRol() == 'Tutor'){

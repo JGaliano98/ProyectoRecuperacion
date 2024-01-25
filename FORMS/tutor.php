@@ -6,7 +6,7 @@ Autoload::Autoload();
 $nuevoAlumno = isset($_POST['btnNuevoAlumno']);
 $eliminarAlumno = isset($_POST['btnEliminarAlumno']);
 $actualizaAlumno = isset($_POST['btnActualizarAlumno']);
-$baremarConvocatoria = isset($_POST['btnBaremarConvocatoria']);
+$faltas = isset($_POST['btnFaltas']);
 $cerrarSesion = isset($_POST['btnCerrarSesion']);
 
 if($nuevoAlumno){
@@ -24,9 +24,9 @@ if($actualizaAlumno){
     header('Location:/ProyectoRecuperacion/index.php?menu=actualizaAlumno');
 }
 
-if($baremarConvocatoria){
+if($faltas){
     
-    header('Location:/ProyectoRecuperacion/index.php?menu=baremarConvocatorias');
+    header('Location:/ProyectoRecuperacion/index.php?menu=faltas');
 }
 
 if($cerrarSesion){
@@ -59,7 +59,7 @@ if($cerrarSesion){
                     <input type="submit" value="Actualizar Alumno" name="btnActualizarAlumno" id="btnActualizarConvocatoria">
                 </div>
                 <div id="divbtnBaremar">
-                    <input type="submit" value="Baremar Convocatorias" name="btnBaremarConvocatoria" id="btnBaremarConvocatoria">
+                    <input type="submit" value="Faltas" name="btnFaltas" id="btnBaremarConvocatoria">
                 </div>
                 <div id="divbtnCerrarSesion">
                     <input type="submit" value="Cerrar Sesión" name="btnCerrarSesion" id="btnCerrarSesion">

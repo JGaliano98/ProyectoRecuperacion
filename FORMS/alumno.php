@@ -3,19 +3,22 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
-$justificarFaltas = isset($_POST['btnVerSolicitudes']);
-$verFaltas = isset($_POST['btnVerEstado']);
+$ID=$_GET['ID'];
+
+
+$justificarFaltas = isset($_POST['btnJustificar']);
+$verFaltas = isset($_POST['btnConsultar']);
 
 $cerrarSesion = isset($_POST['btnCerrarSesion']);
 
 if($justificarFaltas){
     
-    header('Location:/ProyectoRecuperacion/index.php?menu=justificar');
+    header('Location:/ProyectoRecuperacion/index.php?menu=verInjustificadasIndividual&&ID='.$ID);
 }
 
 if($verFaltas){
     
-    header('Location:/ProyectoRecuperacion/index.php?menu=verFaltas');
+    header('Location:/ProyectoRecuperacion/index.php?menu=verFaltasIndividual&&ID='.$ID);
 }
 
 
@@ -40,10 +43,10 @@ if($cerrarSesion){
 
             <div id="divBotonesAlumno">
                 <div id="divbtnVerSolicitudes">
-                    <input type="submit" value="Consultar faltas de asistencia" name="btnVerSolicitudes" id="btnVerSolicitudes">
+                    <input type="submit" value="Consultar faltas de asistencia" name="btnConsultar" id="btnVerSolicitudes">
                 </div>
                 <div id="divbtnbtnVerEstado">
-                    <input type="submit" value="Justificar faltas de asistencia" name="btnVerEstado" id="btnVerEstado">
+                    <input type="submit" value="Justificar faltas de asistencia" name="btnJustificar" id="btnVerEstado">
                 </div>
                 
                 <div id="divbtnCerrarSesion">

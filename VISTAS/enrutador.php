@@ -26,5 +26,23 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == "actualizaAlumno") {
         require_once $rutaBase . '/Forms/actualizaAlumno.php';
     }
+    if ($_GET['menu'] == "faltas") {
+        require_once $rutaBase . '/Forms/faltas.php';
+    }
+    if ($_GET['menu'] == "verTodasFaltas") {
+        require_once $rutaBase . '/Forms/verTodasFaltas.php';
+    }
+    if ($_GET['menu'] == "verFaltasJustificadas") {
+        require_once $rutaBase . '/Forms/verFaltasJustificadas.php';
+    }
+    if ($_GET['menu'] == "verFaltasIndividual") {
+        require_once $rutaBase . '/Forms/verFaltasIndividual.php';
+    }
+    if ($_GET['menu'] == "verInjustificadasIndividual") {
+        require_once $rutaBase . '/Forms/verInjustificadasIndividual.php';
+    }
+    if ($_GET['menu'] == "justificar") {
+        require_once $rutaBase . '/Forms/justificar.php';
+    }
 
 }
