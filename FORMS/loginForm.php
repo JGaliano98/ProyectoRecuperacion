@@ -30,14 +30,19 @@ if ($acceder) {
 
         if($user->getRol() == 'Profesor'){
             
-            echo "hey profe";
+            header('Location: /ProyectoRecuperacion/index.php?menu=profesor');
 
 
         } 
 
         if($user->getRol() == 'Alumno'){
  
-            header('Location: /ProyectoErasmus/index.php?menu=alumno');
+            header('Location: /ProyectoRecuperacion/index.php?menu=alumno');
+        }
+
+        if($user->getRol() == 'Tutor'){
+ 
+            header('Location: /ProyectoRecuperacion/index.php?menu=tutor');
         }
 
     }else{

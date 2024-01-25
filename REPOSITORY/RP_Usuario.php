@@ -59,6 +59,7 @@ class RP_Usuario {
     public static function BuscarPorDNI($DNI) {
         $conexion = Conexion::AbreConexion();
         $resultado = $conexion->query("SELECT * FROM Usuario WHERE DNI = '$DNI'");
+        $usuario=null;
 
         while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
             $ID_Usuario = $tuplas->ID;
@@ -87,7 +88,7 @@ class RP_Usuario {
 
     public static function ActualizaPorID($id, $objeto) {
         $conexion = Conexion::AbreConexion();
-        $conexion->exec("UPDATE Usuario SET DNI='{$objeto->getDNI()}', nombre='{$objeto->getNombre()}', apellido1='{$objeto->getApellido1()}', apellido2='{$objeto->getApellido2()}', telefono='{$objeto->getTelefono()}', correo='{$objeto->getCorreo()}', rol='{$objeto->getRol()}', foto='{$objeto->getFoto()}', curso='{$objeto->getCurso()}', contraseña='{$objeto->getContraseña()}' WHERE ID={$id}");
+        $conexion->exec("UPDATE Usuario SET ID='{$objeto->getID()}', DNI='{$objeto->getDNI()}', nombre='{$objeto->getNombre()}', apellido1='{$objeto->getApellido1()}', apellido2='{$objeto->getApellido2()}', telefono='{$objeto->getTelefono()}', correo='{$objeto->getCorreo()}', rol='{$objeto->getRol()}', foto='{$objeto->getFoto()}', curso='{$objeto->getCurso()}', contraseña='{$objeto->getContraseña()}' WHERE ID={$id}");
 
     }
 
@@ -109,6 +110,22 @@ class RP_Usuario {
     
         $conexion->exec ("INSERT INTO Usuario (ID, DNI, nombre, apellido1, apellido2, telefono, correo, rol, foto, curso, contraseña) VALUES ('$ID_Usuario', '$DNI', '$nombre', '$apellido1', '$apellido2', '$telefono', '$correo', '$rol', '$foto', '$curso', '$contraseña')");
 
+    }
+
+    public static function existeUsuario($DNI){
+
+
+        $resultado = RP_Usuario::BuscarPorDNI($DNI);
+
+        if ($resultado!=null){
+            if ($resultado->getDNI() == $DNI){
+                return true;
+            } else{
+                return false;
+            }
+        }else{
+            return false;
+        }    
     }
     
     

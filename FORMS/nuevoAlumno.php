@@ -2,12 +2,12 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
-$acceder = isset($_POST['btnAccederReg']) ? $_POST['btnAccederReg'] :'';
+$volver = isset($_POST['btnAccederReg']) ? $_POST['btnAccederReg'] :'';
 $registrar = isset($_POST['btnRegistroReg']) ? $_POST['btnRegistroReg'] :'';
 
-if ($acceder) {
+if ($volver) {
 
-    header('Location: /ProyectoRecuperacion/index.php?menu=login');
+    header('Location: /ProyectoRecuperacion/index.php?menu=tutor');
 
 }
 
@@ -146,11 +146,11 @@ if ($registrar) {
                 <div id="divBotonesReg">
 
                     <div id="divBtnAccederReg">
-                        <input type="submit" value="Acceder" name="btnAccederReg" id="btnAccederReg">
+                        <input type="submit" value="Volver" name="btnAccederReg" id="btnAccederReg">
                     </div>
 
                     <div id="divBtnRegistroReg">
-                        <input type="submit" value="Registrarse" name="btnRegistroReg" id="btnRegistroReg">
+                        <input type="submit" value="Crear" name="btnRegistroReg" id="btnRegistroReg">
                     </div>
                         
                 </div>
