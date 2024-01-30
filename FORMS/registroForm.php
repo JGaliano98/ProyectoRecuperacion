@@ -2,47 +2,72 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
-$acceder = isset($_POST['btnAccederReg']) ? $_POST['btnAccederReg'] :'';
-$registrar = isset($_POST['btnRegistroReg']) ? $_POST['btnRegistroReg'] :'';
+$validator = new Validator();
+
+//Para que los errores de primeras se encuentren vacios.
+$errores = [
+    'dni' => '',
+    'contraseña' => '',
+    'nombre' => '',
+    'apellido1' => '',
+    'apellido2' => '',
+    'telefono' => '',
+    'correo' => '',
+    'curso' => ''
+];
+
+$acceder = isset($_POST['btnAccederReg']) ? $_POST['btnAccederReg'] : '';
+$registrar = isset($_POST['btnRegistroReg']) ? $_POST['btnRegistroReg'] : '';
 
 if ($acceder) {
-
     header('Location: /ProyectoRecuperacion/index.php?menu=login');
-
 }
 
 if ($registrar) {
+    $DNI = $_POST['txtDNI'];
+    $Contraseña = $_POST['txtContraseñaReg'];
+    $Nombre = $_POST['txtNombreReg'];
+    $Apellido1 = $_POST['txtAp1Reg'];
+    $Apellido2 = $_POST['txtAp2Reg'];
+    $Telefono = $_POST['txtTelefonoReg'];
+    $Correo = $_POST['txtCorreoReg'];
+    $Curso = $_POST['txtCursoReg'];
 
-
-    $DNI=$_POST['txtDNI'];
-    $Contraseña=$_POST['txtContraseñaReg'];
-    $Nombre=$_POST['txtNombreReg'];
-    $Apellido1=$_POST['txtAp1Reg'];
-    $Apellido2=$_POST['txtAp2Reg'];
-    $Telefono=$_POST['txtTelefonoReg'];
-    $Correo=$_POST['txtCorreoReg'];
-    $Curso=$_POST['txtCursoReg'];
-
-
-    $alumno = new Usuario(1,$DNI,$Nombre,$Apellido1,$Apellido2,$Telefono,$Correo,"Alumno","No",$Curso,$Contraseña);
-
-    if(RP_Usuario::existeUsuario($DNI)==true){
-
-        ?><script>alert("El usuario ya existe.");</script><?php
-
-    } else {
-
-        RP_Usuario::InsertaObjeto($alumno);
-        
-        ?><script>alert("Usuario registrado con éxito.");</script><?php
+    // Validaciones
+    if (!$validator->validaDNI($DNI)) {
+        $errores['dni'] = "DNI inválido.";
+    }
+    if (!$validator->validaContraseña($Contraseña)) {
+        $errores['contraseña'] = "Contraseña inválida.";
+    }
+    if (!$validator->validaNombre($Nombre, 50, 1)) {
+        $errores['nombre'] = "Nombre inválido.";
+    }
+    if (!$validator->validaApellido($Apellido1, 50, 1)) {
+        $errores['apellido1'] = "Primer apellido inválido.";
+    }
+    if (!$validator->validaApellido($Apellido2, 50, 1)) {
+        $errores['apellido2'] = "Segundo apellido inválido.";
+    }
+    if (!$validator->validaTlf($Telefono)) {
+        $errores['telefono'] = "Teléfono inválido.";
+    }
+    if (!$validator->validaCorreo($Correo)) {
+        $errores['correo'] = "Correo electrónico inválido.";
     }
 
-    
-    
-
+    if (empty(array_filter($errores))) {
+        $alumno = new Usuario(1, $DNI, $Nombre, $Apellido1, $Apellido2, $Telefono, $Correo, "Alumno", "No", $Curso, $Contraseña);
+        if (RP_Usuario::existeUsuario($DNI)) {
+            $errores['dni'] = "El usuario ya existe.";
+        } else {
+            RP_Usuario::InsertaObjeto($alumno);
+            echo '<script>alert("Usuario registrado con éxito.");</script>';
+        }
+    }
 }
-
 ?>
+
  
 
 
@@ -55,96 +80,67 @@ if ($registrar) {
             </div>
 
             <div id="divContenidoReg">
-
                 <div id="divIzquierda">
-
                     <div id="divDNIReg">
-                        <div id="divlblDNIReg">
-                            <label>DNI:</label>
-                        </div>
-                        <div id="divtxtDNIReg">
-                            <input type="text" name="txtDNI" id="txtDNI" data-valida="dni">
-                        </div>
+                        <label>DNI:</label>
+                        <input type="text" name="txtDNI" id="txtDNI">
+                        <div class="error"><?php echo $errores['dni']; ?></div>
+                        <br>
                     </div>
 
                     <div id="divContraseñaReg">
-                        <div id="lblContraseñaReg">
-                            <label>Contraseña:</label>
-                        </div>
-                        <div id="divtxtContraseñaReg">
-                            <input type="text" name="txtContraseñaReg" id="txtContraseñaReg" data-valida="relleno">
-                        </div>
+                        <label>Contraseña:</label>
+                        <input type="password" name="txtContraseñaReg" id="txtContraseñaReg">
+                        <div class="error"><?php echo $errores['contraseña']; ?></div>
+                        <br>
                     </div>
 
                     <div id="divNombreReg">
-                        <div id="lblNombreReg">
-                            <label>Nombre:</label>
-                        </div>
-                        <div id="divtxtNombreReg">
-                            <input type="text" name="txtNombreReg" id="txtNombreReg" data-valida="relleno">
-                        </div>
+                        <label>Nombre:</label>
+                        <input type="text" name="txtNombreReg" id="txtNombreReg">
+                        <div class="error"><?php echo $errores['nombre']; ?></div>
+                        <br>
                     </div>
 
                     <div id="divAp1Reg">
-                        <div id="lblAp1Reg">
-                            <label>Primer Apellido:</label>
-                        </div>
-                        <div id="divtxtAp1Reg">
-                            <input type="text" name="txtAp1Reg" id="txtAp1Reg" data-valida="relleno">
-                        </div>
+                        <label>Primer Apellido:</label>
+                        <input type="text" name="txtAp1Reg" id="txtAp1Reg">
+                        <div class="error"><?php echo $errores['apellido1']; ?></div>
+                        <br>
                     </div>
-
-                   
-
                 </div>
 
                 <div id="divDerecha">
-
-
                     <div id="divAp2Reg">
-                        <div id="lblAp2Reg">
-                            <label>Segundo Apellido:</label>
-                        </div>
-                        <div id="divtxtAp2Reg">
-                            <input type="text" name="txtAp2Reg" id="txtAp2Reg">
-                        </div>
+                        <label>Segundo Apellido:</label>
+                        <input type="text" name="txtAp2Reg" id="txtAp2Reg">
+                        <div class="error"><?php echo $errores['apellido2']; ?></div>
+                        <br>
                     </div>
 
                     <div id="divTelefonoReg">
-                        <div id="lblTelefonoReg">
-                            <label>Teléfono:</label>
-                        </div>
-                        <div id="divtxtTelefonoReg">
-                            <input type="text" name="txtTelefonoReg" id="txtTelefonoReg" data-valida="telefono">
-                        </div>
+                        <label>Teléfono:</label>
+                        <input type="text" name="txtTelefonoReg" id="txtTelefonoReg">
+                        <div class="error"><?php echo $errores['telefono']; ?></div>
+                        <br>
                     </div>
-
 
                     <div id="divCorreoReg">
-                        <div id="lblCorreoReg">
-                            <label>Correo Electrónico:</label>
-                        </div>
-                        <div id="divtxtCorreoReg">
-                            <input type="text" name="txtCorreoReg" id="txtCorreoReg" data-valida="correoElectronico">
-                        </div>
+                        <label>Correo Electrónico:</label>
+                        <input type="email" name="txtCorreoReg" id="txtCorreoReg">
+                        <div class="error"><?php echo $errores['correo']; ?></div>
+                        <br>
                     </div>
-
 
                     <div id="divCursoReg">
-                        <div id="lblCursoReg">
-                            <label>Curso:</label>
-                        </div>
-                        <div id="divtxtCursoReg">
-                            <input type="text" name="txtCursoReg" id="txtCursoReg" data-valida="curso">
-                        </div>
+                        <label>Curso:</label>
+                        <input type="text" name="txtCursoReg" id="txtCursoReg">
+                        <div class="error"><?php echo $errores['curso']; ?></div>
+                        <br>
                     </div>
-
-
                 </div>
-
                 
                 <div id="divBotonesReg">
-
                     <div id="divBtnAccederReg">
                         <input type="submit" value="Acceder" name="btnAccederReg" id="btnAccederReg">
                     </div>
@@ -152,14 +148,12 @@ if ($registrar) {
                     <div id="divBtnRegistroReg">
                         <input type="submit" value="Registrarse" name="btnRegistroReg" id="btnRegistroReg">
                     </div>
-                        
                 </div>
-
             </div>
-            
         </div>
     </form>
 </div>
+
 
 
 

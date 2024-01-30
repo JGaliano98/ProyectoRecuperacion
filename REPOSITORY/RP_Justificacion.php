@@ -13,11 +13,12 @@ class RP_Justificacion {
 
         while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
             $ID = $tuplas->ID;
-            $fecha_justificacion = $tuplas->fecha_justificacion;
-            $documento = $tuplas->documento;
+            $fecha = $tuplas->fecha;
             $motivo = $tuplas->motivo;
+            $documento = $tuplas->documento;
+            
 
-            $justificacion = new Justificacion($ID, $fecha_justificacion, $documento, $motivo);
+            $justificacion = new Justificacion($ID, $fecha,  $motivo,  $documento);
             $array[] = $justificacion;
         }
 
@@ -30,11 +31,13 @@ class RP_Justificacion {
 
         while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
             $ID = $tuplas->ID;
-            $fecha_justificacion = $tuplas->fecha_justificacion;
-            $documento = $tuplas->documento;
+            $fecha = $tuplas->fecha;
             $motivo = $tuplas->motivo;
+            $documento = $tuplas->documento;
+            
 
-            $justificacion = new Justificacion($ID, $fecha_justificacion, $documento, $motivo);
+            $justificacion = new Justificacion($ID, $fecha,  $motivo,  $documento);
+            //$array[] = $justificacion;
         }
 
         return $justificacion;
@@ -43,21 +46,24 @@ class RP_Justificacion {
     public static function InsertaObjeto($objeto) {
         $conexion = Conexion::AbreConexion();
 
-        $fecha_justificacion = $objeto->getFechaJustificacion();
-        $documento = $objeto->getDocumento();
+        $fecha = $objeto->getFecha();
         $motivo = $objeto->getMotivo();
-
-        $conexion->exec("INSERT INTO justificacion (fecha_justificacion, documento, motivo) VALUES ('$fecha_justificacion', '$documento', '$motivo')");
+        $documento = $objeto->getDocumento();
+    
+        
+        $stmt = $conexion->prepare("INSERT INTO justificacion (fecha, motivo, documento) VALUES ( ?, ?, ?)");
+        $stmt->execute([ $fecha, $motivo, $documento]);
     }
+    
 
     public static function ActualizaPorID($id, $objeto) {
         $conexion = Conexion::AbreConexion();
 
-        $fecha_justificacion = $objeto->getFechaJustificacion();
+        $fecha = $objeto->getFecha();
         $documento = $objeto->getDocumento();
         $motivo = $objeto->getMotivo();
 
-        $conexion->exec("UPDATE justificacion SET fecha_justificacion = '$fecha_justificacion', documento = '$documento', motivo = '$motivo' WHERE ID = $id");
+        $conexion->exec("UPDATE justificacion SET fecha = '$fecha', documento = '$documento', motivo = '$motivo' WHERE ID = $id");
     }
 
     public static function BorraPorID($id) {

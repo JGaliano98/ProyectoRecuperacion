@@ -32,6 +32,33 @@ class RP_Usuario {
         return $array;
     }
 
+    public static function MostrarTodoAlumnos() {
+        $conexion = Conexion::AbreConexion();
+        $array = [];
+
+        $resultado = $conexion->query("SELECT * FROM usuario where rol='Alumno'");
+
+        while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
+            $ID_Usuario = $tuplas->ID;
+            $DNI = $tuplas->DNI;
+            $nombre = $tuplas->nombre;
+            $apellido1 = $tuplas->apellido1;
+            $apellido2 = $tuplas->apellido2;
+            $telefono = $tuplas->telefono;
+            $correo = $tuplas->correo;
+            $rol = $tuplas->rol;
+            $foto = $tuplas->foto;
+            $curso = $tuplas->curso;
+            $contraseña = $tuplas->contraseña;
+
+            $usuario = new Usuario($ID_Usuario, $DNI, $nombre, $apellido1, $apellido2, $telefono, $correo, $rol, $foto, $curso, $contraseña);
+            $array[] = $usuario;
+        }
+
+
+        return $array;
+    }
+
     public static function BuscarPorID($id) {
         $conexion = Conexion::AbreConexion();
         $resultado = $conexion->query("SELECT * FROM Usuario WHERE ID=$id");
@@ -55,6 +82,39 @@ class RP_Usuario {
 
         return $usuario;
     }
+
+    public static function BuscarPorNombreCompleto($nombre, $apellido1, $apellido2) {
+        $conexion = Conexion::AbreConexion();
+        $consulta = $conexion->prepare("SELECT * FROM Usuario WHERE nombre = :nombre AND apellido1 = :apellido1 AND apellido2 = :apellido2");
+        
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':apellido1', $apellido1);
+        $consulta->bindParam(':apellido2', $apellido2);
+        
+        $consulta->execute();
+    
+        $tupla = $consulta->fetch(PDO::FETCH_OBJ);
+        if ($tupla) {
+            $usuario = new Usuario(
+                $tupla->ID,
+                $tupla->DNI,
+                $tupla->nombre,
+                $tupla->apellido1,
+                $tupla->apellido2,
+                $tupla->telefono,
+                $tupla->correo,
+                $tupla->rol,
+                $tupla->foto,
+                $tupla->curso,
+                $tupla->contraseña
+            );
+            return $usuario;
+        }
+    
+        return null; // Devuelve null si no se encuentra ningún usuario
+    }
+    
+    
 
     public static function BuscarPorDNI($DNI) {
         $conexion = Conexion::AbreConexion();

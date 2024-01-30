@@ -160,6 +160,7 @@
     padding: 1%;
 
     width: 50%;
+    margin-top: -2%;
 
 }
 
@@ -168,7 +169,7 @@
 
     width: 50%;
     margin-left: 50%;
-    margin-top: -27%;
+    margin-top: -37%;
 
 }
 
@@ -185,7 +186,7 @@
 
     width: 30%;
     margin-left: 5%;
-    margin-top: 10%;
+
 
 }
 #divBtnRegistroReg{
@@ -374,13 +375,25 @@
     margin-top: 10%;
     font-family: Tahoma;
 }
+
+#btnCrearHorario{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 50%;
+    margin-top: 15%;
+    font-family: Tahoma;
+}
+
+
 #btnCerrarSesion{
     position: absolute;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     width: 20%;
     height: 50px;
     margin-left: 35%;
-    margin-top: 16%;
+    margin-top: 20%;
     font-family: Tahoma;
 }
 
@@ -605,4 +618,54 @@
     margin-left: 83%;
     margin-top: -5%;
     font-family: Tahoma;
+}
+
+
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 1px;
+}
+
+
+#asignaturas {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin-right: 20px;
+}
+
+.asignatura {
+    padding: 5px;
+    margin: 5px;
+    background-color: lightblue;
+    cursor: pointer;
+    border: 1px solid darkblue;
+}
+
+#horario {
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-collapse: collapse;
+
+}
+
+#horario td {
+    border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    vertical-align: top;
+    text-align: center;
+}
+#asignaturas{
+    position: absolute;
+    margin-top: 2% ;
+    margin-left: 70%;
+}
+#cursos{
+    position: absolute;
+    margin-top: 20% ;
+    margin-left: 70%;
 }

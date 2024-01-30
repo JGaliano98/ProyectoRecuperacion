@@ -4,7 +4,7 @@ Autoload::Autoload();
 
 $volver = isset($_POST['btnVolverElim']);
 
-$mostrar = RP_Usuario::MostrarTodo();
+$mostrar = RP_Usuario::MostrarTodoAlumnos();
 $i = 0;
 
 if ($mostrar == null) {

@@ -13,6 +13,7 @@ $mostrar = RP_Falta::MostrarInjustificadasPorUsuario($ID);
 $obj = RP_Falta::MostrarInjustificadasPorUsuarioOBJ($ID);
 
 $IDfalta = $obj -> getID();
+$Fecha = $obj -> getFecha();
 
 
 
@@ -69,7 +70,7 @@ for ($j = 0; $j < $i; $j++) {
     if (isset($_POST['btnJustificar' . $j])) {
 
         $IDfalta = $_POST['IDfalta'];
-        echo '<script>window.location.href="?menu=justificar&ID=' . $ID . '&IDfalta=' . $IDfalta . '";</script>';
+        echo '<script>window.location.href="?menu=justificar&ID=' . $ID . '&IDfalta=' . $IDfalta .'&Fecha=' . $Fecha .'";</script>';
         
     }
 }

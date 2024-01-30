@@ -42,7 +42,13 @@ if (isset($_GET['menu'])) {
         require_once $rutaBase . '/Forms/verInjustificadasIndividual.php';
     }
     if ($_GET['menu'] == "justificar") {
-        require_once $rutaBase . '/Forms/justificar.php';
+        require_once $rutaBase . '/Forms/justificarFalta.php';
+    }
+    if ($_GET['menu'] == "horario") {
+        require_once $rutaBase . '/JS/horario.html';
+    }
+    if ($_GET['menu'] == "filtroAlumno") {
+        require_once $rutaBase . '/Forms/faltaAlumno.php';
     }
 
 }

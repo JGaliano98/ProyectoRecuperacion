@@ -47,6 +47,48 @@ class RP_Falta {
         return $array;
     }
 
+
+    public static function MostrarFaltasAlumno($nombre, $apellido1, $apellido2) {
+        $conexion = Conexion::AbreConexion();
+        $array = [];
+
+        $resultado = $conexion->query("SELECT * FROM falta where estado='Justificada'");
+
+        while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
+            $ID = $tuplas->ID;
+            $fecha = $tuplas->fecha;
+            $estado = $tuplas->estado;
+            $ID_justificacion = $tuplas->ID_Justificacion;
+            $ID_usuario = $tuplas->ID_Usuario;
+
+            $falta = new Falta($ID, $fecha, $estado, $ID_usuario, $ID_justificacion);
+            $array[] = $falta;
+        }
+
+        return $array;
+    }
+
+    public static function MostrarFaltasPorUsuario($ID) {
+        $conexion = Conexion::AbreConexion();
+        $array = [];
+
+        $resultado = $conexion->query("SELECT * FROM falta WHERE ID_Usuario=$ID");
+
+        while ($tuplas = $resultado->fetch(PDO::FETCH_OBJ)) {
+            $ID = $tuplas->ID;
+            $fecha = $tuplas->fecha;
+            $estado = $tuplas->estado;
+            $ID_justificacion = $tuplas->ID_Justificacion;
+            $ID_usuario = $tuplas->ID_Usuario;
+
+            $falta = new Falta($ID, $fecha, $estado, $ID_usuario, $ID_justificacion);
+            $array[] = $falta;
+        }
+
+        return $array;
+    }
+
+
     public static function MostrarInjustificadasPorUsuario($ID) {
         $conexion = Conexion::AbreConexion();
         $array = [];

@@ -7,10 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portal de Faltas Las Fuentezuelas</title>
     <link rel="stylesheet" href="Styles/estilos.css">
-    <script src="../ProyectoErasmus/JS/validaciones.js"></script>
-    <script src="../ProyectoErasmus/JS/logica.js"></script>
-    <script src="../ProyectoErasmus/JS/registro.js"></script>
-    <script src="../ProyectoErasmus/JS/pdf.js"></script>
+    <script src="JS/pdf.js"></script>
+    <script src="JS/horario.js"></script>
+    <script src="JS/justificarFalta.js"></script>
 </head>
 
 <body id = "fondo">
