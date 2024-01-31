@@ -6,6 +6,9 @@ Autoload::Autoload();
 $verTodas = isset($_POST['btnVerTodas']);
 $verJustificadas = isset($_POST['btnVerJustificadas']);
 $filtroAlumnos = isset($_POST['btnFaltasPorAlumno']);
+$filtroCurso = isset($_POST['btnFaltasPorCurso']);
+$filtroFechas = isset($_POST['btnFaltasPorFecha']);
+
 
 
 $cerrarSesion = isset($_POST['btnCerrarSesion']);
@@ -24,6 +27,19 @@ if($filtroAlumnos){
     
     header('Location:/ProyectoRecuperacion/index.php?menu=filtroAlumno');
 }
+
+if($filtroCurso){
+    
+    header('Location:/ProyectoRecuperacion/index.php?menu=filtroCurso');
+}
+
+if($filtroFechas){
+    
+    header('Location:/ProyectoRecuperacion/index.php?menu=filtroFechas');
+}
+
+
+
 
 
 
@@ -58,6 +74,9 @@ if($cerrarSesion){
                 </div>
                 <div id="divFaltaPorCurso">
                     <input type="submit" value="Ver Faltas por Curso" name="btnFaltasPorCurso" id="btnFaltasPorCurso">
+                </div>
+                <div id="divFaltaPorFechas">
+                    <input type="submit" value="Ver Faltas en un Intervalo de Fechas" name="btnFaltasPorFecha" id="btnFaltasPorFecha">
                 </div>
                 <div id="divbtnCerrarSesion">
                     <input type="submit" value="Cerrar Sesión" name="btnCerrarSesion" id="btnCerrarSesion">

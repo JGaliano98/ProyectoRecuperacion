@@ -113,7 +113,38 @@ class RP_Usuario {
     
         return null; // Devuelve null si no se encuentra ningún usuario
     }
+
+    public static function BuscarPorCurso($curso) {
+        $conexion = Conexion::AbreConexion();
+        $consulta = $conexion->prepare("SELECT * FROM Usuario WHERE curso = :curso");
+        
+        $consulta->bindParam(':curso', $curso);
+        $consulta->execute();
     
+        $tuplas = $consulta->fetchAll(PDO::FETCH_OBJ);
+        if ($tuplas) {
+            $usuarios = [];
+            foreach ($tuplas as $tupla) {
+                $usuarios[] = new Usuario(
+                    $tupla->ID,
+                    $tupla->DNI,
+                    $tupla->nombre,
+                    $tupla->apellido1,
+                    $tupla->apellido2,
+                    $tupla->telefono,
+                    $tupla->correo,
+                    $tupla->rol,
+                    $tupla->foto,
+                    $tupla->curso,
+                    $tupla->contraseña
+                );
+            }
+            return $usuarios;
+        }
+    
+        return null; // Devuelve null si no se encuentra ningún usuario
+    }
+  
     
 
     public static function BuscarPorDNI($DNI) {

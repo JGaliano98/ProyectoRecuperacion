@@ -18,7 +18,7 @@ Autoload::Autoload();
 
     <input type="submit" value="Consultar" name="btnConsultar">
 
-    <input type="submit" id="btnVolverElim" value="Volver" name="btnVolver">
+    <input type="submit" id="btnVolverElim" value="Volver" name="btnVolverAlu">
 
 
 </form>
@@ -26,71 +26,74 @@ Autoload::Autoload();
 <?php
 
 $consultar = isset( $_POST['btnConsultar']);
-$volver=isset($_POST['btnVolver']);
+$volver=isset($_POST['btnVolverAlu']);
 
 if($consultar){
 
 
-    
-
-$nombre=$_POST['nombre'];
-$apellido1=$_POST['apellido1'];
-$apellido2=$_POST['apellido2'];
+    $nombre=$_POST['nombre'];
+    $apellido1=$_POST['apellido1'];
+    $apellido2=$_POST['apellido2'];
 
 
 
+    $alumno = RP_Usuario::BuscarPorNombreCompleto($nombre, $apellido1, $apellido2);
+
+    if ($alumno !== null){
 
 
-$alumno = RP_Usuario::BuscarPorNombreCompleto($nombre, $apellido1, $apellido2);
-
-$ID_Alumno = $alumno->getID(); 
+        $ID_Alumno = $alumno->getID();
 
 
+        $mostrar = RP_Falta::MostrarFaltasPorUsuario($ID_Alumno);
+        $i=0;
 
-$mostrar = RP_Falta::MostrarFaltasPorUsuario($ID_Alumno);
-$i=0;
+        if($mostrar ==null){
+            echo "No hay Faltas";
+        }else{
+            ?>
+            <div class="divTablaMostrar">
 
-if($mostrar ==null){
-    echo "No hay Faltas";
-}else{
-    ?>
-    <div class="divTablaMostrar">
-
-        <table class="tablaMostrar">
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>ID Usuario</th>
-            </tr>
-            <?php
+                <table class="tablaMostrar">
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>ID Usuario</th>
+                    </tr>
+                    <?php
+                    
+                    foreach ($mostrar as $key): 
+                        
+                        ?>
+                        <tr>
+                            <td><?php echo $key->getID(); ?></td>
+                            <td name="nombre<?php echo $i ?>"><?php echo $key->getFecha(); ?></td>
+                            <td><?php echo $key->getEstado(); ?></td>
+                            <td><?php echo $key->getIDUsuario(); ?></td>
+                            <td style="display: none;"><?php echo $key->getIDJustificacion(); ?></td>
+                        </tr>
+                    <?php
+                    $i++;
+                        endforeach; ?>
+                </table>
+            </div>
             
-            foreach ($mostrar as $key): 
-                
-                ?>
-                <tr>
-                    <td><?php echo $key->getID(); ?></td>
-                    <td name="nombre<?php echo $i ?>"><?php echo $key->getFecha(); ?></td>
-                    <td><?php echo $key->getEstado(); ?></td>
-                    <td><?php echo $key->getIDUsuario(); ?></td>
-                    <td style="display: none;"><?php echo $key->getIDJustificacion(); ?></td>
-                </tr>
             <?php
-            $i++;
-                endforeach; ?>
-        </table>
-    </div>
-    
-    <?php
-        
+                
+
+        }
+
+
+    } else {
+        echo("No existe el usuario");
+    }
 
 }
 
 
 if($volver) {
     
-    header('Location: /ProyectoRecuperacion/index.php?menu=faltas');
-}
-
+    header('Location:/ProyectoRecuperacion/index.php?menu=faltas');
 }
 ?>

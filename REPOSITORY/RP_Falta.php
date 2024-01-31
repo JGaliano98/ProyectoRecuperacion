@@ -5,6 +5,7 @@ Autoload::Autoload();
 
 class RP_Falta {
 
+    
     public static function MostrarTodo() {
         $conexion = Conexion::AbreConexion();
         $array = [];
@@ -24,6 +25,32 @@ class RP_Falta {
 
         return $array;
     }
+
+    public static function MostrarTodoFechas($fechaInicio, $fechaFin) {
+        $conexion = Conexion::AbreConexion();
+        $array = [];
+    
+        $consulta = $conexion->prepare("SELECT * FROM falta WHERE fecha BETWEEN :fechaInicio AND :fechaFin");
+    
+        $consulta->bindParam(':fechaInicio', $fechaInicio);
+        $consulta->bindParam(':fechaFin', $fechaFin);
+        $consulta->execute();
+    
+        
+        while ($tuplas = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $ID = $tuplas->ID;
+            $fecha = $tuplas->fecha;
+            $estado = $tuplas->estado;
+            $ID_justificacion = $tuplas->ID_Justificacion;
+            $ID_usuario = $tuplas->ID_Usuario;
+    
+            $falta = new Falta($ID, $fecha, $estado, $ID_usuario, $ID_justificacion);
+            $array[] = $falta;
+        }
+    
+        return $array;
+    }
+    
 
 
 

@@ -50,5 +50,11 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == "filtroAlumno") {
         require_once $rutaBase . '/Forms/faltaAlumno.php';
     }
+    if ($_GET['menu'] == "filtroCurso") {
+        require_once $rutaBase . '/Forms/faltaCurso.php';
+    }
+    if ($_GET['menu'] == "filtroFechas") {
+        require_once $rutaBase . '/Forms/faltaIntervaloFechas.php';
+    }
 
 }
