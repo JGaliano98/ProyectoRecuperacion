@@ -2,34 +2,36 @@ window.addEventListener("load", function(){
     
     var btnJustificar = document.getElementById("btnJustificar");
     btnJustificar.addEventListener("click", function(ev) {
-        debugger;
         ev.preventDefault();
 
+        debugger;
         // Obtener los valores de los campos del formulario
+        var idFalta = document.getElementById("idFalta").value;
         var ID_Justificacion = 1;
         var fechaFalta = document.getElementById("fecha").value;
         var motivo = document.getElementById("observaciones").value;
-        var documento = document.getElementById("documento1").value;
+        const documentos = document.getElementById("documento1").files[0];
        
-
+        var formData=new FormData();
 
         // Crear un objeto con los datos del usuario
         var datosJustificacion = {
+            
             ID_Justificacion: ID_Justificacion,
             fecha: fechaFalta,
             motivo: motivo,
-            documento: documento,
+            idFalta: idFalta,
         };
 
-        alert(JSON.stringify(datosJustificacion));
+        //alert(JSON.stringify(datosJustificacion));
+
+        formData.append("json",JSON.stringify(datosJustificacion));
+        formData.append("documento",documentos);
 
         // Enviar los datos al servidor mediante una solicitud fetch
         fetch("http://localhost/ProyectoRecuperacion/API/API_Justificacion.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(datosJustificacion)
+            body: formData
         })
         .then(x => x.json())
         .then(y => {

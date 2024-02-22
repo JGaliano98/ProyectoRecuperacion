@@ -45,15 +45,20 @@ class RP_Justificacion {
 
     public static function InsertaObjeto($objeto) {
         $conexion = Conexion::AbreConexion();
-
+    
         $fecha = $objeto->getFecha();
         $motivo = $objeto->getMotivo();
         $documento = $objeto->getDocumento();
     
-        
-        $stmt = $conexion->prepare("INSERT INTO justificacion (fecha, motivo, documento) VALUES ( ?, ?, ?)");
-        $stmt->execute([ $fecha, $motivo, $documento]);
+        $stmt = $conexion->prepare("INSERT INTO justificacion (fecha, motivo, documento) VALUES (?, ?, ?)");
+        $stmt->execute([$fecha, $motivo, $documento]);
+    
+        $ultimoId = $conexion->lastInsertId();
+    
+       
+        return $ultimoId;
     }
+    
     
 
     public static function ActualizaPorID($id, $objeto) {

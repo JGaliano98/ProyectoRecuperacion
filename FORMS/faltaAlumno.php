@@ -6,6 +6,76 @@ Autoload::Autoload();
 
 ?>
 
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    form {
+        margin: 20px auto;
+        width: 70%; 
+        max-width: 500px; 
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .divTablaMostrar {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .tablaMostrar {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    .tablaMostrar, .tablaMostrar th, .tablaMostrar td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+    }
+    .tablaMostrar th {
+        background-color: #007bff;
+        color: white;
+    }
+    .tablaMostrar tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .tablaMostrar tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+
+
+
+
 <form method="post">
     <label for="nombre">Nombre:</label><br>
     <input type="text" id="nombre" name="nombre"><br>

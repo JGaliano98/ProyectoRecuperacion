@@ -29,6 +29,9 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == "faltas") {
         require_once $rutaBase . '/Forms/faltas.php';
     }
+    if ($_GET['menu'] == "faltasProfesor") {
+        require_once $rutaBase . '/Forms/faltasProfesor.php';
+    }
     if ($_GET['menu'] == "verTodasFaltas") {
         require_once $rutaBase . '/Forms/verTodasFaltas.php';
     }
@@ -55,6 +58,15 @@ if (isset($_GET['menu'])) {
     }
     if ($_GET['menu'] == "filtroFechas") {
         require_once $rutaBase . '/Forms/faltaIntervaloFechas.php';
+    }
+    if ($_GET['menu'] == "justificarFaltas") {
+        require_once $rutaBase . '/Forms/verFaltasEspera.php';
+    }
+    if ($_GET['menu'] == "justificarFaltasProfesor") {
+        require_once $rutaBase . '/Forms/justificarProfesor.php';
+    }
+    if ($_GET['menu'] == "pasaLista") {
+        require_once $rutaBase . '/JS/pasaLista.php';
     }
 
 }

@@ -8,7 +8,9 @@ $eliminarAlumno = isset($_POST['btnEliminarAlumno']);
 $actualizaAlumno = isset($_POST['btnActualizarAlumno']);
 $faltas = isset($_POST['btnFaltas']);
 $nuevoHorario = isset($_POST['btnHorario']);
+$pasarLista = isset($_POST['btnLista']);
 $cerrarSesion = isset($_POST['btnCerrarSesion']);
+
 
 
 
@@ -35,6 +37,11 @@ if($faltas){
 if($nuevoHorario){
     
     header('Location:/ProyectoRecuperacion/index.php?menu=horario');
+}
+
+if($pasarLista){
+    
+    header('Location:/ProyectoRecuperacion/index.php?menu=pasaLista');
 }
 
 if($cerrarSesion){
@@ -71,6 +78,9 @@ if($cerrarSesion){
                 </div>
                 <div id="divbtnHorario">
                     <input type="submit" value="Nuevo Horario" name="btnHorario" id="btnCrearHorario">
+                </div>
+                <div id="divbtnPasarLista">
+                    <input type="submit" value="Pasar Lista" name="btnLista" id="btnPasarLista">
                 </div>
                 <div id="divbtnCerrarSesion">
                     <input type="submit" value="Cerrar Sesión" name="btnCerrarSesion" id="btnCerrarSesion">

@@ -2,6 +2,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
+
+
 $volver = isset($_POST['btnAccederReg']) ? $_POST['btnAccederReg'] :'';
 $registrar = isset($_POST['btnRegistroReg']) ? $_POST['btnRegistroReg'] :'';
 

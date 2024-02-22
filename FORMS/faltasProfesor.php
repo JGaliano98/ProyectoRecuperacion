@@ -52,7 +52,7 @@ if($verFaltasAJustificar){
 if($cerrarSesion){
 
 
-    header('Location:/ProyectoRecuperacion/index.php?menu=tutor');
+    header('Location:/ProyectoRecuperacion/index.php?menu=profesor');
     
 }
 
@@ -64,7 +64,7 @@ if($cerrarSesion){
         <form method="post">
 
             <div id="divTituloAdministrador">
-                <label id="tituloAdministrador">BIENVENIDO TUTOR</label>
+                <label id="tituloAdministrador">BIENVENIDO PROFESOR</label>
             </div>
 
             <div id="divBotonesAdministrador">

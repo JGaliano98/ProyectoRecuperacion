@@ -3,6 +3,63 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
+?>
+
+<style>
+   
+    .tablaMostrar {
+        width: 100%; 
+        margin: 0 auto; 
+        border-collapse: collapse;
+    }
+
+    .tablaMostrar, .tablaMostrar th, .tablaMostrar td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .tablaMostrar th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .tablaMostrar tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .tablaMostrar tr:hover {
+        background-color: #ddd;
+    }
+
+    input[type="submit"], #btnVolverAct, #btnEditar {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover, #btnVolverAct:hover, #btnEditar:hover {
+        background-color: #0056b3;
+    }
+
+    input[type="text"], #inputActualizar {
+        width: 90%;
+        padding: 5px;
+        margin: 2px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+</style>
+
+
+
+
+
+<?php
+
 
 $volver = isset($_POST['btnVolverAct']);
 

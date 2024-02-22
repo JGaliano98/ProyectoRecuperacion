@@ -3,30 +3,24 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProyectoRecuperacion/Helpers/Autoload.php';
 Autoload::Autoload();
 
-$crearConvocatoria = isset($_POST['btnCrearConvocatoria']);
-$verConvocatoria = isset($_POST['btnVerConvocatoria']);
-$actualizarConvocatoria = isset($_POST['btnActualizarConvocatoria']);
-$baremarConvocatoria = isset($_POST['btnBaremarConvocatoria']);
+$nuevoAlumno = isset($_POST['btnNuevoAlumno']);
+$eliminarAlumno = isset($_POST['btnEliminarAlumno']);
+$actualizaAlumno = isset($_POST['btnActualizarAlumno']);
+$faltas = isset($_POST['btnFaltas']);
+$nuevoHorario = isset($_POST['btnHorario']);
+$pasarLista = isset($_POST['btnLista']);
 $cerrarSesion = isset($_POST['btnCerrarSesion']);
 
-if($crearConvocatoria){
+
+if($faltas){
     
-    header('Location:/ProyectoErasmus/index.php?menu=crearConv');
+    header('Location:/ProyectoRecuperacion/index.php?menu=faltasProfesor');
 }
 
-if($verConvocatoria){
-    
-    header('Location:/ProyectoErasmus/index.php?menu=verConv');
-}
 
-if($actualizarConvocatoria){
+if($pasarLista){
     
-    header('Location:/ProyectoErasmus/index.php?menu=actualizarConv');
-}
-
-if($baremarConvocatoria){
-    
-    header('Location:/ProyectoErasmus/index.php?menu=baremarConvocatorias');
+    header('Location:/ProyectoRecuperacion/index.php?menu=pasaLista');
 }
 
 if($cerrarSesion){
@@ -49,17 +43,13 @@ if($cerrarSesion){
             </div>
 
             <div id="divBotonesAdministrador">
-                <div id="divbtnCrearConvocatoria">
-                    <input type="submit" value="Crear nueva convocatoria" name="btnCrearConvocatoria" id="btnCrearConvocatoria">
-                </div>
-                <div id="divbtnVerConvocatorias">
-                    <input type="submit" value="Ver y Eliminar Convocatorias" name="btnVerConvocatoria" id="btnVerConvocatoria">
-                </div>
-                <div id="divbtnActualizarConvocatorias">
-                    <input type="submit" value="Actualizar Convocatorias" name="btnActualizarConvocatoria" id="btnActualizarConvocatoria">
-                </div>
+                
                 <div id="divbtnBaremar">
-                    <input type="submit" value="Baremar Convocatorias" name="btnBaremarConvocatoria" id="btnBaremarConvocatoria">
+                    <input type="submit" value="Faltas" name="btnFaltas" id="btnBaremarConvocatoria">
+                </div>
+               
+                <div id="divbtnPasarLista">
+                    <input type="submit" value="Pasar Lista" name="btnLista" id="btnPasarLista">
                 </div>
                 <div id="divbtnCerrarSesion">
                     <input type="submit" value="Cerrar Sesión" name="btnCerrarSesion" id="btnCerrarSesion">

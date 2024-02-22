@@ -37,9 +37,9 @@ if ($registrar) {
     if (!$validator->validaDNI($DNI)) {
         $errores['dni'] = "DNI inválido.";
     }
-    if (!$validator->validaContraseña($Contraseña)) {
-        $errores['contraseña'] = "Contraseña inválida.";
-    }
+    // if (!$validator->validaContraseña($Contraseña)) {
+    //     $errores['contraseña'] = "Contraseña inválida.";
+    // }
     if (!$validator->validaNombre($Nombre, 50, 1)) {
         $errores['nombre'] = "Nombre inválido.";
     }

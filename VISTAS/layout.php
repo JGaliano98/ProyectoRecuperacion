@@ -10,6 +10,7 @@
     <script src="JS/pdf.js"></script>
     <script src="JS/horario.js"></script>
     <script src="JS/justificarFalta.js"></script>
+    <script src="JS/lista.js"></script>
 </head>
 
 <body id = "fondo">

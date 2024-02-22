@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 #divHeader{
     border: 2px rgba(3,77,162,255) solid;
     width: 100%;
@@ -160,7 +161,7 @@
     padding: 1%;
 
     width: 50%;
-    margin-top: -2%;
+
 
 }
 
@@ -169,7 +170,7 @@
 
     width: 50%;
     margin-left: 50%;
-    margin-top: -37%;
+    margin-top: -27%;
 
 }
 
@@ -386,6 +387,16 @@
     font-family: Tahoma;
 }
 
+#btnPasarLista{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 20%;
+    margin-top: 15%;
+    font-family: Tahoma;
+}
+
 
 #btnCerrarSesion{
     position: absolute;
@@ -396,6 +407,64 @@
     margin-top: 20%;
     font-family: Tahoma;
 }
+
+
+/* VER FALTAS TUTOR.*/
+
+#btnFaltasPorAlumno{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 20%;
+    margin-top: 10%;
+    font-family: Tahoma;
+}
+
+#btnFaltasPorCurso{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 20%;
+    margin-top: 15%;
+    font-family: Tahoma;
+}
+
+#btnFaltasPorFecha{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 50%;
+    margin-top: 15%;
+    font-family: Tahoma;
+}
+
+#btnFaltasPorJustificar{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    height: 50px;
+    margin-left: 50%;
+    margin-top: 10%;
+    font-family: Tahoma;
+}
+
+
+#guardarHorario{
+    position: absolute;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 11%;
+    height: 50px;
+    margin-left: 70%;
+    margin-top: 24%;
+    font-family: Tahoma;
+}
+
+
+
+
 
 
 /* VER Y ELIMINAR CONVOCATORIAS */
@@ -669,3 +738,39 @@
     margin-top: 20% ;
     margin-left: 70%;
 }
+
+
+
+
+
+
+
+
+.asistenciaBtn {
+    width: 50px; /* Hace que el botón ocupe toda la celda. */
+    padding: 10px; /* Añade algo de espacio dentro del botón para hacerlo más grande y fácil de clickear. */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total del botón más allá de la celda. */
+}
+
+.justificada {
+    background-color: green;
+    color: white;
+}
+
+.injustificada {
+    background-color: red;
+    color: white;
+}
+
+.retraso {
+    background-color: yellow;
+    color: black;
+}
+
+.seleccionado {
+    border: 2px solid black;
+}
+
+
+
+
